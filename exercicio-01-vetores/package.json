@@ -1,0 +1,9 @@
+{
+  "name": "exercicio-01-vetores",
+  "version": "1.0.0",
+  "main": "run.c",
+  "license": "MIT",
+  "scripts": {
+    "start": "gcc run.c -o run && ./run"
+  }
+}
