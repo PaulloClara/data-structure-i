@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 int main () {
-  // system ("pause");
+
+
+  // system ("PAUSE");
   return 0;
 }
