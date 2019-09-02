@@ -1,30 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// functions and pointers off
+void showVector(int *vector, int len, char *msg) {
+  printf("\t%s => [ ", msg);
+  for (int i = 0; i < len; i++) {
+    printf("%d ", vector[i]);
+  }
+  printf("]\n");
+}
 
 int main () {
-  int v1[5] = {0, 1, 2, 3, 4};
-  int len1 = sizeof(v1)/sizeof(v1[0]);
+  int len;
 
-  int v2[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-  int len2 = sizeof(v2)/sizeof(v2[0]);
+  printf("\nNumero de elementos do vetor A e B\n> ");
+  scanf("%d", &len);
 
-  int len3 = sizeof(v1)/sizeof(v1[0]) + sizeof(v2)/sizeof(v2[0]);
-  int v3[len3];
+  int vectorA[len];
+  int vectorB[len];
+  int vectorC[len*2];
 
-  for (int i = 0; i < len1; i++) {
-    v3[i] = v1[i];
+  for (int i = 0; i < len; i++) {
+    printf("\nValor do vetor A na posicao %d\n> ", i);
+    scanf("%d", &vectorA[i]);
   }
 
-  for (int i = 0; i < len2; i++) {
-    v3[i+len1] = v2[i];
+  for (int i = 0; i < len; i++) {
+    printf("\nValor do vetor B na posicao %d\n> ", i);
+    scanf("%d", &vectorB[i]);
   }
 
-  for (int i = 0; i < len3; i++) {
-    printf("%d\n", v3[i]);
+  for (int i = 0; i < len; i++) {
+    vectorC[i] = vectorA[i];
+    vectorC[i+len] = vectorB[i];
   }
 
-  // system ("pause");
+  printf("\n\n");
+  showVector(vectorA, len, "Vetor A");
+  showVector(vectorB, len, "Vetor B");
+  showVector(vectorC, len*2, "Vetor C");
+  printf("\n\n");
+
+  // system("pause");
   return 0;
 }
