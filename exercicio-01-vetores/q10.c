@@ -2,30 +2,34 @@
 #include <stdlib.h>
 
 int main () {
-  int val = 1;
-
   int len = 0;
-  int vector[] = {};
+  int vector[200];
+  // int vector[] = {}; Erro: acima de um elemento o vetor passa do limite alocado
 
+  int val;
   float sum = 0;
 
-  while (val) {
-    printf("Elemento da posicao %i (0 para)\n> ", len);
-    scanf("%i", &val);
+  printf("\n\t0 - Stop\n\n");
+  do {
+    printf("Elemento da posica %pause\n> ", len);
 
-    if (val) {
+    scanf("%d", &val);
+
+    if (val > 0) {
       vector[len] = val;
       len++;
     }
-  }
+
+  } while(val);
 
   for (int i = 0; i < len; i++) {
     sum += vector[i];
   }
 
   printf("\n\nSoma = %.2f\n", sum);
-  printf("Media = %.2f\n\n\n", sum / len);
+  printf("Media = %.2f\n\n", sum/len);
 
-  // system ("PAUSE");
+  // system("pause");
+
   return 0;
 }
