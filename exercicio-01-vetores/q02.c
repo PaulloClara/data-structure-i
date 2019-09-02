@@ -1,64 +1,82 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int checkVector(int *v, int len, int val) {
-  for (int i = 0; i < len; i++) {
-    if (v[i] == val) {
-      return 1;
-    }
-  }
-  return 0;
-}
-
 void showVector(int *vector, int len, char *msg) {
-  printf("%s => [ ", msg);
+  printf("\t%s => [ ", msg);
   for (int i = 0; i < len; i++) {
     printf("%d ", vector[i]);
   }
   printf("]\n");
 }
 
-int main () {
-  int vectorA[6] = {0, 1, 4, 3, 4, 5};
-  int lenVectorA = sizeof(vectorA)/sizeof(vectorA[0]);
-
-  int vectorB[5] = {5, 1, 4, 5, 0};
-  int lenVectorB = sizeof(vectorB)/sizeof(vectorB[0]);
-
-  int vectorU[lenVectorA + lenVectorB];
-  int iVectorU = 0;
-
-  int vectorI[lenVectorA + lenVectorB / 2];
-  int iVectorI = 0;
-
-  for (int i = 0; i < lenVectorA; i++) {
-    if (!checkVector(vectorU, iVectorU, vectorA[i])) {
-      vectorU[iVectorU] = vectorA[i];
-      iVectorU++;
+int checkVector(int *v, int len, int val) {
+  for (int i = 0; i < len; i++) {
+    if (v[i] == val) {
+      return 1;
     }
   }
 
-  for (int i = 0; i < lenVectorB; i++) {
-    if (!checkVector(vectorU, iVectorU, vectorB[i])) {
-      vectorU[iVectorU] = vectorB[i];
-      iVectorU++;
+  return 0;
+}
+
+int main () {
+  int lenA, lenB;
+
+  printf("\nNumero de elementos do vetor A\n> ");
+  scanf("%d", &lenA);
+
+  printf("\nNumero de elementos do vetor B\n> ");
+  scanf("%d", &lenB);
+
+  int lenU = lenA*lenB;
+  int iU = 0;  // index uniao
+
+  int lenI = (lenA+lenB)/2;
+  int iI = 0;  // index intersecao
+
+  int vectorA[lenA];
+  int vectorB[lenB];
+
+  int vectorU[lenU];
+  int vectorI[lenI];
+
+  for (int i = 0; i < lenA; i++) {
+    printf("\nValor do vetor A na posicao %d\n> ", i);
+    scanf("%d", &vectorA[i]);
+  }
+
+  for (int i = 0; i < lenB; i++) {
+    printf("\nValor do vetor B na posicao %d\n> ", i);
+    scanf("%d", &vectorB[i]);
+  }
+
+  for (int i = 0; i < lenA; i++) {
+    if (!checkVector(vectorU, iU, vectorA[i])) {
+      vectorU[iU] = vectorA[i];
+      iU++;
+    }
+  }
+
+  for (int i = 0; i < lenB; i++) {
+    if (!checkVector(vectorU, iU, vectorB[i])) {
+      vectorU[iU] = vectorB[i];
+      iU++;
     } else {
-      if (
-        !checkVector(vectorI, iVectorI, vectorB[i])
-        && checkVector(vectorA, lenVectorA, vectorB[i])
-      ) {
-        vectorI[iVectorI] = vectorB[i];
-        iVectorI++;
+      if (!checkVector(vectorI, iI, vectorB[i]) && checkVector(vectorA, lenA, vectorB[i])) {
+        vectorI[iI] = vectorB[i];
+        iI++;
       }
     }
   }
 
-  showVector(vectorA, lenVectorA, "\n\nPrimeiro vetor");
-  showVector(vectorB, lenVectorB, "Segundo vetor ");
-  showVector(vectorU, iVectorU, "\nConjunto uniao");
-  showVector(vectorI, iVectorI, "Conjunto intersecao");
+  printf("\n\n");
+  showVector(vectorA, lenA, "Vetor A");
+  showVector(vectorB, lenB, "Vetor B");
+  printf("\n\n");
+  showVector(vectorU, iU, "Conjunto uniao");
+  showVector(vectorI, iI, "Conjunto intersecao");
   printf("\n\n");
 
-  // system ("pause");
+  // system("pause");
   return 0;
 }
