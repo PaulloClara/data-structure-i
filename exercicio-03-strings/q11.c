@@ -2,9 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "libs/myStrings.h"
-
 #define MAXLEN 100
+
+void slice(char *stro, char *strd, size_t start, size_t end) { /* q10 */
+  size_t len = 0;
+
+  for (size_t i = start; i < end; i++) {
+    strd[len++] = stro[i];
+  }
+  strd[len] = '\0';
+}
 
 int main() {
   char str[MAXLEN];
@@ -40,8 +47,8 @@ int main() {
   strTemp = strstr(str, substr);
   lenStrTemp = strlen(strTemp);
 
-  getSlice(str, firstPart, 0, lenStr-lenStrTemp);
-  getSlice(strTemp, lastPart, lenSubstr, lenStrTemp);
+  slice(str, firstPart, 0, lenStr-lenStrTemp);
+  slice(strTemp, lastPart, lenSubstr, lenStrTemp);
 
   size_t lenNewStr = strlen(firstPart)+lenNewSubstr+strlen(lastPart);
   char newStr[lenNewStr];

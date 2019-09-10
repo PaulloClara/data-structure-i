@@ -1,39 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define maxLen 300
+#define MAXLEN 300
 
-int getLenVector(char *vector) {
-  int len = 0;
-
-  for (int i = 0; i < maxLen; i++) {
-    if (vector[i] == '\n') return len;
-    len++;
+size_t checkVowel(char ch) {
+  switch (ch) {
+    case 'a':
+    case 'e':
+    case 'i':
+    case 'o':
+    case 'u':
+    case 'A':
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+      return 1;
+    default:
+      return 0;
   }
-
-  return len;
 }
 
 int main() {
-  char string[maxLen];
+  char string[MAXLEN];
 
-  printf("\tEntre com a String\n> ");
-  fgets(string, maxLen, stdin);
+  fprintf(stdout, "\n\tEntre com a String\n> ");
+  fgets(string, MAXLEN, stdin);
+  string[strlen(string)-1] = '\0';  // removendo quebra de linha
 
-  int len = getLenVector(string);
-  int aux;
+  size_t len = strlen(string);
+  char ch;
 
-  for (int i = 0; i < len; i++) {
-    aux = string[len - i - 1];
-    if (
-      aux != 65 && aux != 69 && aux != 73 && aux != 79 && aux != 85 &&
-      aux != 97 && aux != 101 && aux != 105 && aux != 111 && aux != 117 && aux != 32
-    ) aux = 35;
+  for (size_t i = 0; i < len; i++) {
+    ch = string[len - i - 1];
+    if (!checkVowel(ch) && ch != ' ') ch = '#';
 
-    printf("%c", aux);
+    printf("%c", ch);
   }
 
-  printf("\n");
+  printf("\n\n");
 
   return 0;
 }
