@@ -10,7 +10,7 @@ int main() {
 
   size_t words = 0;
 
-  fprintf(stdout, "\n\tDitire alguma coisa\n> ");
+  fprintf(stdout, "\n\tDigite alguma coisa\n> ");
   fgets(string, MAXLEN, stdin);
   string[strlen(string)-1] = '\0';
   len = strlen(string);
