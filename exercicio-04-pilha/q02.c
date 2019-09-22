@@ -54,6 +54,7 @@ void clear_screen() {
 }
 
 void init(typeparking *parking) {
+  clear_screen();
   parking->last = 0;
   parking->current = 0;
   parking->max = MAXPARKING;
