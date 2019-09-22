@@ -21,6 +21,7 @@ struct stack pinC;
 
 char selectedpin, targetpin;
 size_t numberdiscs;
+size_t numbermoves;
 
 void clear_buffer() {
   char ch;
@@ -41,6 +42,8 @@ void init() {
 
   if (numberdiscs > MAXDISCS) numberdiscs = MAXDISCS;
   else if (numberdiscs < 3) numberdiscs = 3;
+
+  numbermoves = 0;
 
   pinA.last = -1;
   pinB.last = -1;
@@ -67,6 +70,8 @@ void render_disc(char pin, size_t sizedisc) {
 }
 
 void show_pins() {
+  printf("\t\t\t\t\t\t\t\t\t\t\tJogadas => %d", numbermoves);
+
   for (size_t i = 0; i < 9; i++) printf("\n");
   for (int i = pinA.last; i >= 0; i--) render_disc('a', pinA.elements[i]);
 
@@ -132,6 +137,7 @@ void push(char pin, size_t disc) {
 void apply_changes() {
   size_t disc = pop(selectedpin);
   push(targetpin, disc);
+  numbermoves++;
 }
 
 size_t check_victory() {
@@ -183,6 +189,7 @@ int main() {
     if (check_victory()) {
       clear_screen();
       show_pins();
+      printf("\n\t\tJogadas => %d\n", numbermoves);
       printf("\n\t\tPika das galaxias detected!\n");
       printf("\n\t\tPressione enter para sair. ");
       clear_buffer();
