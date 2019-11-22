@@ -12,7 +12,7 @@
 typedef struct posicao_s {
   int tempo;
   char nome[MAXNOME];
-  struct posicao_s *proximo; 
+  struct posicao_s *proximo;
 } posicao_t;
 
 typedef struct {
@@ -72,7 +72,7 @@ void remover(fila_t *fila) {
   posicao_t *posicao;
 
   if (fila->inicio == fila->fim) fila->fim = NULL;
-  
+
   posicao = fila->inicio;
 
   fila->inicio = fila->inicio->proximo;

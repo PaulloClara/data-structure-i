@@ -88,7 +88,7 @@ void mostrar_guiche(guiche_t *guiche, char letra) {
     printf("\t|\t   | Status | Senha | Tempo Nec. |\n");
   }
   printf("\t------------------------------------------\n");
-  
+
   printf("\t| Guiche %c:", letra);
   if (guiche->status == 'l') printf("  Livre  |  ...  |     ...    |\n");
   else {
@@ -113,7 +113,7 @@ int entrar(fila_t *fila, int hora_atual, int total_pessoas) {
   cliente.senha = total_pessoas + 1;
   cliente.hora_entrada = hora_atual;
   cliente.tempo_necessario = obter_valor_randomico();
-  
+
   fila->clientes[fila->fim] = cliente;
 
   return 0;
